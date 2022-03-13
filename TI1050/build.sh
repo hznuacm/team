@@ -6,4 +6,9 @@ DIST="${TOP_DIR}/TI1050"
 
 git clone https://github.com/TI-1050/wiki.git -b gh-pages "${DIST}"
 
-mv "${DIST}" "${TOP_DIR}/../dist"
+rm -rf "${DIST}/.git"
+
+if [[ -d "${DIST}" ]]; then
+    cp -a "${DIST}" "${TOP_DIR}/../dist"
+    rm -rf "${DIST}"
+fi
