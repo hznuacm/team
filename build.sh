@@ -5,8 +5,20 @@ MAIN_TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 # shellcheck disable=SC1091
 source "${MAIN_TOP_DIR}/utils.sh"
 
+DIST="${MAIN_TOP_DIR}/dist"
+
+if [[ -d "${DIST}" ]]; then
+    rm -rf "${DIST}"
+fi
+
+mkdir "${DIST}"
+
 for dir in "${MAIN_TOP_DIR}"/*; do
     if [[ ! -d "${dir}" ]]; then
+        continue
+    fi
+
+    if [[ "$(basename "${dir}")" == "dist" ]]; then
         continue
     fi
 
