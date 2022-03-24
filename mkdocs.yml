@@ -6,7 +6,7 @@ site_description: >-
 
 # Repository
 repo_name: hznuacm/wiki
-repo_url: https://github.com/hznuacm/wiki
+repo_url: https://github.com/hznuacm/team
 edit_uri: tree/main/docs
 
 # Copyright
@@ -33,7 +33,7 @@ theme:
     # - navigation.expand
     # - navigation.sections
     - navigation.tracking
-    - navigation.tabs
+    # - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
@@ -91,7 +91,7 @@ extra:
     property: !ENV GOOGLE_ANALYTICS_KEY
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/hznuacm/wiki
+      link: https://github.com/hznuacm/team
 
 # Extensions
 markdown_extensions:
@@ -165,3 +165,4 @@ docs_dir: docs
 
 nav:
   - Getting Started: index.md
+  - Teams: teams.md
