@@ -13,12 +13,8 @@ fi
 
 mkdir "${DIST}"
 
-for dir in "${MAIN_TOP_DIR}"/*; do
+for dir in "${MAIN_TOP_DIR}/team"/*; do
     if [[ ! -d "${dir}" ]]; then
-        continue
-    fi
-
-    if [[ "$(basename "${dir}")" == "dist" ]]; then
         continue
     fi
 
