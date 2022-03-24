@@ -1,19 +1,31 @@
 #! /bin/bash
 
+set -e
+
 MAIN_TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 # shellcheck disable=SC1091
 source "${MAIN_TOP_DIR}/utils.sh"
 
-DIST="${MAIN_TOP_DIR}/dist"
+DIST="${ROOT_DIR}/dist"
 
-if [[ -d "${DIST}" ]]; then
-    rm -rf "${DIST}"
-fi
+ensure_dir "${DIST}"
+ensure_dir "${TMP_DIR}"
 
-mkdir "${DIST}"
+INFO "Build Main Document Started."
 
-for dir in "${MAIN_TOP_DIR}/team"/*; do
+set -x
+
+mkdocs build -v
+npx mkdocs-render-math-ssr --srcDir="${ROOT_DIR}/site" --useWorker
+
+set +x
+
+INFO "Build Main Document Ended."
+
+mv "${ROOT_DIR}/site"/* "${DIST}"
+
+for dir in "${ROOT_DIR}/team"/*; do
     if [[ ! -d "${dir}" ]]; then
         continue
     fi

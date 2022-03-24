@@ -1,3 +1,8 @@
 .DS_Store
 
-dist/
+/venv
+/node_modules/
+
+/site
+/dist
+/tmp
