@@ -48,7 +48,6 @@ jobs:
           pnpm build
 
       - name: Deploy to deploy-pages
-        if: ${{ github.event_name != 'pull_request' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +59,6 @@ jobs:
           commit_message: 🚀 Deploying to gh-pages @ ${{ env.GITHUB_SHA }}
 
       - name: Deploy
-        if: ${{ github.event_name != 'pull_request' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
