@@ -60,7 +60,7 @@ theme:
         name: Switch to light mode
 
   font:
-    text: Roboto
+    text: Georgia
     code: Roboto Mono
 
   favicon: assets/favicon.png
