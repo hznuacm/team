@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 */1 * * *"
   workflow_dispatch:
 
 jobs:
@@ -66,6 +68,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/docker-data/nginx/www
-            rm -rf team
-            git clone https://github.dup4.com/hznuacm/team.git -b deploy-pages --depth=1
+            bash <(curl -s -L https://cdn.jsdelivr.net/gh/Dup4/bash-script-snippet@latest/deploy_gh_pages.sh) -r hznuacm/team -d /var/docker-data/nginx/www
