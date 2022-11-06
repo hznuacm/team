@@ -60,12 +60,32 @@ jobs:
           user_email: "github-actions[bot]@users.noreply.github.com"
           commit_message: 🚀 Deploying to gh-pages @ ${{ env.GITHUB_SHA }}
 
+      - name: Zip files
+        run: |
+          git clone --branch deploy-pages --single-branch git@github.com:hznuacm/team.git team.gh.download
+          zip -r team.gh.download.zip team.gh.download
+
+      - name: Deploy
+        uses: garygrossgarten/github-action-scp@master
+        with:
+          local: team.gh.download.zip
+          remote: /var/docker-data/nginx/www
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          privateKey: ${{ secrets.PASSWORD }}
+
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
           script: |
-            bash <(curl -s -L https://raw-github.dup4.com/Dup4/bash-script-snippet/main/deploy_gh_pages.sh) -r hznuacm/team -d /var/docker-data/nginx/www
+            cd /var/docker-data/nginx/www
+            [ -d "team.gh.download" ] && rm -rf "team.gh.download"
+            unzip team.gh.download.zip
+            mv team team.back
+            mv team.gh.download team
+            rm -rf team.back
