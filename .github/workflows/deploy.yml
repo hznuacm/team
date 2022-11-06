@@ -73,7 +73,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
-          privateKey: ${{ secrets.PASSWORD }}
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy
         uses: appleboy/ssh-action@master
