@@ -66,11 +66,11 @@ jobs:
           rm -rf ./team.gh.download/.git
           zip -r team.gh.download.zip team.gh.download
 
-      - name: Deploy
+      - name: Transfer files
         uses: garygrossgarten/github-action-scp@master
         with:
           local: team.gh.download.zip
-          remote: /var/docker-data/nginx/www
+          remote: /var/docker-data/nginx/www/team.gh.download.zip
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -87,6 +87,7 @@ jobs:
             cd /var/docker-data/nginx/www
             [ -d "team.gh.download" ] && rm -rf "team.gh.download"
             unzip team.gh.download.zip
+            rm team.gh.download.zip
             mv team team.back
             mv team.gh.download team
             rm -rf team.back
