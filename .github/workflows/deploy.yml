@@ -62,7 +62,7 @@ jobs:
 
       - name: Zip files
         run: |
-          git clone --branch deploy-pages --single-branch git@github.com:hznuacm/team.git team.gh.download
+          git clone --branch deploy-pages --single-branch --depth=1 https://github.com/hznuacm/team.git team.gh.download
           zip -r team.gh.download.zip team.gh.download
 
       - name: Deploy
