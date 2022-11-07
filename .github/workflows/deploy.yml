@@ -73,6 +73,7 @@ jobs:
 
       - name: Zip Repo
         run: |
+          cd ..
           ls
           pwd
           echo ${{ env.GITHUB_WORKSPACE }}
