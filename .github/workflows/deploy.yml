@@ -60,34 +60,34 @@ jobs:
           user_email: "github-actions[bot]@users.noreply.github.com"
           commit_message: 🚀 Deploying to gh-pages @ ${{ env.GITHUB_SHA }}
 
-      # - name: Zip files
-      #   run: |
-      #     git clone --branch deploy-pages --single-branch --depth=1 https://github.com/hznuacm/team.git team.gh.download
-      #     rm -rf ./team.gh.download/.git
-      #     zip -r team.gh.download.zip team.gh.download
+      - name: Zip files
+        run: |
+          git clone --branch deploy-pages --single-branch --depth=1 https://github.com/hznuacm/team.git team.gh.download
+          rm -rf ./team.gh.download/.git
+          zip -r team.gh.download.zip team.gh.download
 
-      # - name: Transfer files
-      #   uses: garygrossgarten/github-action-scp@master
-      #   with:
-      #     local: team.gh.download.zip
-      #     remote: /var/docker-data/nginx/www/team.gh.download.zip
-      #     host: ${{ secrets.SSH_HOST }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Transfer files
+        uses: garygrossgarten/github-action-scp@master
+        with:
+          local: team.gh.download.zip
+          remote: /var/docker-data/nginx/www/team.gh.download.zip
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # - name: Deploy
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       cd /var/docker-data/nginx/www
-      #       [ -d "team.gh.download" ] && rm -rf "team.gh.download"
-      #       unzip team.gh.download.zip
-      #       rm team.gh.download.zip
-      #       mv team team.back
-      #       mv team.gh.download team
-      #       rm -rf team.back
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/docker-data/nginx/www
+            [ -d "team.gh.download" ] && rm -rf "team.gh.download"
+            unzip team.gh.download.zip
+            rm team.gh.download.zip
+            mv team team.back
+            mv team.gh.download team
+            rm -rf team.back
