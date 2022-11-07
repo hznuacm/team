@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy
+  deploy-to-deploy-pages:
+    name: Deploy to deploy-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -60,9 +60,19 @@ jobs:
           user_email: "github-actions[bot]@users.noreply.github.com"
           commit_message: 🚀 Deploying to gh-pages @ ${{ env.GITHUB_SHA }}
 
-      - name: Zip files
+  deploy-to-remote:
+    name: Deploy to Remote
+    runs-on: ubuntu-latest
+    needs: [deploy-to-deploy-pages]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: deploy-pages
+          path: ${GITHUB_WORKSPACE}/team.gh.download
+
+      - name: Zip Repo
         run: |
-          git clone --branch deploy-pages --single-branch --depth=1 https://github.com/hznuacm/team.git team.gh.download
           rm -rf ./team.gh.download/.git
           zip -r team.gh.download.zip team.gh.download
 
