@@ -73,6 +73,9 @@ jobs:
 
       - name: Zip Repo
         run: |
+          ls
+          pwd
+          echo ${GITHUB_WORKSPACE}
           rm -rf ./team.gh.download/.git
           zip -r team.gh.download.zip team.gh.download
 
