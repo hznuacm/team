@@ -69,13 +69,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: deploy-pages
-          path: ${GITHUB_WORKSPACE}/team.gh.download
+          path: ${{ env.GITHUB_WORKSPACE }}/team.gh.download
 
       - name: Zip Repo
         run: |
           ls
           pwd
-          echo ${GITHUB_WORKSPACE}
+          echo ${{ env.GITHUB_WORKSPACE }}
           rm -rf ./team.gh.download/.git
           zip -r team.gh.download.zip team.gh.download
 
