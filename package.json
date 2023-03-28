@@ -10,9 +10,7 @@
     "devDependencies": {
         "mkdocs-render-math-ssr": "^1.0.7",
         "remark-cli": "^10.0.1",
-        "remark-preset-lint-mkdocs-material": "^0.6.0"
-    },
-    "dependencies": {
+        "remark-preset-lint-mkdocs-material": "^0.6.0",
         "pnpm": "^8.0.0"
     }
 }
