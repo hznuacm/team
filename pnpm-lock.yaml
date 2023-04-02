@@ -6,11 +6,9 @@ specifiers:
   remark-cli: ^10.0.1
   remark-preset-lint-mkdocs-material: ^0.6.0
 
-dependencies:
-  pnpm: 8.0.0
-
 devDependencies:
   mkdocs-render-math-ssr: 1.0.7
+  pnpm: 8.0.0
   remark-cli: 10.0.1
   remark-preset-lint-mkdocs-material: 0.6.0
 
@@ -1397,7 +1395,7 @@ packages:
     resolution: {integrity: sha512-Crsvd8LKb+SoEB/bQxRZrtSt5Ri8g9jmPg6MKyexMTI1pdLd44gPwVV6cZLq2jYYPv5q+gADPkYTbYr8SeFCeA==}
     engines: {node: '>=16.14'}
     hasBin: true
-    dev: false
+    dev: true
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
